@@ -16,6 +16,7 @@ The source is stored in the private repository <https://github.com/SirMrBA/liter
 - 30-question mock exam with a 12/12/6 Narrative–Poetry–Drama split
 - saved mistakes and device-local progress
 - printable Last-Minute Quick Sheet
+- 14-page Concepts and Terminology Guide PDF with all 77 terms
 
 ## Start on the Mac
 

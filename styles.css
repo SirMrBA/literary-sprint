@@ -125,6 +125,9 @@ main { padding: 28px 0 60px; }
   border-radius: 50%;
 }
 .hero p:not(.eyebrow) { max-width: 690px; margin-bottom: 0; color: var(--muted); font-size: 1.04rem; }
+.hero > * { position: relative; z-index: 1; }
+.hero-actions { display: flex; min-width: 230px; flex-direction: column; gap: 10px; }
+.hero-actions .button { justify-content: center; text-align: center; }
 
 .button {
   appearance: none;
@@ -144,6 +147,7 @@ main { padding: 28px 0 60px; }
 .button.danger { color: var(--red); background: var(--red-soft); border-color: transparent; }
 .button.success { color: var(--success); background: var(--success-soft); border-color: transparent; }
 .button[disabled] { opacity: .48; cursor: not-allowed; transform: none; }
+.button-link { display: inline-flex; align-items: center; text-decoration: none; }
 
 .metrics {
   display: grid;
