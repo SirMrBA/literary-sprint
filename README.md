@@ -12,6 +12,7 @@ The source is stored in the private repository <https://github.com/SirMrBA/liter
 
 - 77 flashcards, including 63 core cards
 - 67 Moodle-style practice questions
+- concept and terminology practice only—no memorization of assigned literary texts
 - 30-question mock exam with a 12/12/6 Narrative–Poetry–Drama split
 - saved mistakes and device-local progress
 - printable Last-Minute Quick Sheet
