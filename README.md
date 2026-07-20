@@ -2,9 +2,11 @@
 
 English-only, iPad-friendly trainer for the **Introduction to Literary Studies** Moodle test.
 
-## Open the trainer
+## Open online
 
 **GitHub Pages:** <https://sirmrba.github.io/literary-sprint-sidelya/>
+
+The source is stored in the private repository <https://github.com/SirMrBA/literary-sprint-sidelya>. The published GitHub Pages website itself is public.
 
 ## Contents
 
@@ -12,7 +14,17 @@ English-only, iPad-friendly trainer for the **Introduction to Literary Studies**
 - 67 Moodle-style practice questions
 - 30-question mock exam with a 12/12/6 Narrative–Poetry–Drama split
 - saved mistakes and device-local progress
-- seven-page Last-Minute Guide PDF
+- printable Last-Minute Quick Sheet
+
+## Start on the Mac
+
+Double-click **Start Trainer.command**. Keep the Terminal window open while Sidelya is studying.
+
+The script prints the current Wi-Fi address, starts the trainer on port 8765 and opens it on the Mac. The iPad must be connected to the same Wi-Fi network.
+
+## Stop
+
+Press **Ctrl+C** in the Terminal window or close that window.
 
 ## Source priority
 
