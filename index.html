@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14281f">
+  <meta name="color-scheme" content="light">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Literary Sprint">
+  <title>Literary Sprint · RUB Literary Studies</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">RUB · Introduction to Literary Studies</p>
+        <h1>Literary Sprint</h1>
+      </div>
+      <div class="exam-chip" aria-label="Exam date and time">
+        <span>Exam</span>
+        <strong>Tue · 16:15</strong>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Study sections">
+      <button class="tab is-active" data-view="home">Plan</button>
+      <button class="tab" data-view="cards">Cards</button>
+      <button class="tab" data-view="practice">Practice</button>
+      <button class="tab" data-view="exam">Mock exam</button>
+      <button class="tab" data-view="sheet">Quick sheet</button>
+    </nav>
+
+    <main>
+      <section id="view-home" class="view is-active" aria-labelledby="home-title">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Your high-yield route</p>
+            <h2 id="home-title">Learn actively. Fix mistakes. Simulate Moodle.</h2>
+            <p>English-only explanations, course-specific corrections and short examples. Start with the diagnostic rather than rereading the 116-page export.</p>
+          </div>
+          <button id="start-diagnostic" class="button primary">Start 15-question diagnostic</button>
+        </div>
+
+        <div class="metrics" aria-label="Progress overview">
+          <article class="metric">
+            <span>Core cards mastered</span>
+            <strong id="metric-mastered">0 / 0</strong>
+          </article>
+          <article class="metric">
+            <span>Practice accuracy</span>
+            <strong id="metric-accuracy">—</strong>
+          </article>
+          <article class="metric">
+            <span>Mistakes to revisit</span>
+            <strong id="metric-mistakes">0</strong>
+          </article>
+        </div>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Tonight · 2–3 hours</p>
+              <h2>Focused evening plan</h2>
+            </div>
+            <button id="reset-progress" class="button ghost">Reset progress</button>
+          </div>
+          <div id="study-plan" class="plan-list"></div>
+        </section>
+
+        <section class="section-block warning-block">
+          <p class="eyebrow">Official-scope warning</p>
+          <h2>Do not skip Poetry.</h2>
+          <p>The course schedule says that, in principle, everything discussed in class is relevant to the test. Poetry had its own online self-test, so the earlier chat assumption that Poetry might be excluded is not reliable.</p>
+        </section>
+
+        <section class="section-block">
+          <p class="eyebrow">Tomorrow morning · 1–2 hours</p>
+          <h2>Short final pass</h2>
+          <ol class="morning-list">
+            <li>Redo every saved mistake.</li>
+            <li>Run one 30-question mock exam.</li>
+            <li>Read the Quick Sheet once—no new topics after that.</li>
+          </ol>
+        </section>
+      </section>
+
+      <section id="view-cards" class="view" aria-labelledby="cards-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Active recall</p>
+            <h2 id="cards-title">Flashcards</h2>
+          </div>
+          <div class="controls compact">
+            <label>Category
+              <select id="card-category">
+                <option value="All">All</option>
+                <option value="Narrative">Narrative</option>
+                <option value="Poetry">Poetry</option>
+                <option value="Drama">Drama</option>
+              </select>
+            </label>
+            <label>Set
+              <select id="card-priority">
+                <option value="core">Core first</option>
+                <option value="all">All terms</option>
+                <option value="mistakes">Weak cards</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="progress-line"><span id="card-progress"></span></div>
+        <article id="flashcard" class="flashcard" aria-live="polite">
+          <div class="flashcard-topline">
+            <span id="card-category-label" class="tag"></span>
+            <span id="card-counter"></span>
+          </div>
+          <div id="card-front" class="card-face">
+            <p class="prompt">Define the term and name one cue that distinguishes it.</p>
+            <h3 id="card-term"></h3>
+            <button id="reveal-card" class="button primary">Reveal answer</button>
+          </div>
+          <div id="card-back" class="card-face is-hidden">
+            <h3 id="card-back-term"></h3>
+            <dl>
+              <div><dt>Definition</dt><dd id="card-definition"></dd></div>
+              <div><dt>Exam cue</dt><dd id="card-cue"></dd></div>
+              <div><dt>Example</dt><dd id="card-example"></dd></div>
+              <div><dt>Do not confuse it with</dt><dd id="card-trap"></dd></div>
+            </dl>
+            <div class="rating-row" aria-label="Rate this card">
+              <button class="button danger" data-rating="again">Again</button>
+              <button class="button" data-rating="hard">Hard</button>
+              <button class="button success" data-rating="good">Got it</button>
+            </div>
+          </div>
+        </article>
+        <div class="under-card-actions">
+          <button id="shuffle-cards" class="button ghost">Shuffle deck</button>
+        </div>
+      </section>
+
+      <section id="view-practice" class="view" aria-labelledby="practice-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Immediate feedback</p>
+            <h2 id="practice-title">Moodle-style practice</h2>
+          </div>
+          <div class="controls compact">
+            <label>Category
+              <select id="practice-category">
+                <option value="All">Mixed</option>
+                <option value="Narrative">Narrative</option>
+                <option value="Poetry">Poetry</option>
+                <option value="Drama">Drama</option>
+                <option value="Mistakes">Saved mistakes</option>
+              </select>
+            </label>
+            <label>Questions
+              <select id="practice-count">
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+                <option value="25">25</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="practice-start" class="empty-state">
+          <p>Choose a category or start with a mixed diagnostic. Answers are explained immediately.</p>
+          <button id="start-practice" class="button primary">Start practice</button>
+        </div>
+        <div id="practice-session" class="quiz-shell is-hidden"></div>
+      </section>
+
+      <section id="view-exam" class="view" aria-labelledby="exam-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">No feedback until the end</p>
+            <h2 id="exam-title">30-question mock exam</h2>
+          </div>
+          <span class="tag">12 Narrative · 12 Poetry · 6 Drama</span>
+        </div>
+        <div id="exam-start" class="exam-intro">
+          <p>This simulation uses the course's typical formats and includes the official corrections from the Moodle feedback. Aim for at least 70%, not merely a narrow pass.</p>
+          <ul>
+            <li>One question at a time</li>
+            <li>No answer explanations during the attempt</li>
+            <li>Wrong answers are saved automatically</li>
+          </ul>
+          <button id="start-exam" class="button primary">Start mock exam</button>
+        </div>
+        <div id="exam-session" class="quiz-shell is-hidden"></div>
+      </section>
+
+      <section id="view-sheet" class="view quick-sheet" aria-labelledby="sheet-title">
+        <div class="section-heading no-print">
+          <div>
+            <p class="eyebrow">Last-minute reference</p>
+            <h2 id="sheet-title">Quick Sheet</h2>
+          </div>
+          <button id="print-sheet" class="button primary">Print / Save as PDF</button>
+        </div>
+
+        <div class="sheet-title print-only">
+          <p>RUB · Introduction to Literary Studies · SoSe 2026</p>
+          <h1>Literary Studies — Last-Minute Guide</h1>
+        </div>
+
+        <section class="sheet-section">
+          <h2>1 · Narrator and focalization: two separate questions</h2>
+          <div class="two-question-grid">
+            <article><strong>Who speaks?</strong><p>Narrator inside the story = <b>homodiegetic</b>. Narrator outside the story = <b>heterodiegetic</b>.</p></article>
+            <article><strong>Who perceives?</strong><p>Access to a character's mind = <b>internal focalization</b>. Observable behaviour only = <b>external focalization</b>.</p></article>
+          </div>
+          <p class="micro-note">A homodiegetic narrator can use external focalization in a passage by restricting the report to observable facts. It is unusual, not impossible.</p>
+        </section>
+
+        <section class="sheet-section">
+          <h2>2 · High-risk distinctions</h2>
+          <div class="comparison-table" role="table">
+            <div class="comparison-head" role="row"><span>Pair</span><span>First term</span><span>Second term</span></div>
+            <div role="row"><b>Story / Plot</b><span>Chronological events</span><span>Order presented in the text</span></div>
+            <div role="row"><b>Plot / Discourse</b><span>Arrangement of events</span><span>Broader “how” of narration</span></div>
+            <div role="row"><b>Subject / Theme</b><span>Topic: love, war, nature</span><span>Claim or idea about that topic</span></div>
+            <div role="row"><b>Mystery / Suspense</b><span>Missing information</span><span>Anticipation about the outcome</span></div>
+            <div role="row"><b>Explicit / Implicit</b><span>Trait stated directly</span><span>Trait inferred from evidence</span></div>
+            <div role="row"><b>Narratorial / Figural</b><span>Information from narrator</span><span>Information from a character</span></div>
+            <div role="row"><b>Antithesis / Chiasmus</b><span>Contrast in meaning</span><span>Reversed parallel structure: ABBA</span></div>
+            <div role="row"><b>Enjambment / End-stopped</b><span>Syntax continues over line break</span><span>Syntactic unit closes or strongly pauses</span></div>
+          </div>
+        </section>
+
+        <section class="sheet-section">
+          <h2>3 · Poetry forms and sound</h2>
+          <div class="compact-grid">
+            <article><strong>English sonnet</strong><p>14 lines · 3 quatrains + couplet · ABAB CDCD EFEF GG</p></article>
+            <article><strong>Italian sonnet</strong><p>14 lines · octave + sestet · often ABBA ABBA CDE CDE</p></article>
+            <article><strong>Blank verse</strong><p>Unrhymed iambic pentameter.</p></article>
+            <article><strong>Volta</strong><p>Turn in thought or argument.</p></article>
+          </div>
+          <div class="meter-strip">
+            <span><b>Iamb</b> × / · da-DUM</span>
+            <span><b>Trochee</b> / × · DUM-da</span>
+            <span><b>Dactyl</b> / × × · DUM-da-da</span>
+            <span><b>Anapest</b> × × / · da-da-DUM</span>
+          </div>
+          <p class="micro-note"><b>Official course answers:</b> “Swift of foot was Hiawatha” = trochaic. “Woman much missed, how you call to me” = dactylic.</p>
+        </section>
+
+        <section class="sheet-section">
+          <h2>4 · Rhetorical devices</h2>
+          <div class="device-grid">
+            <span><b>Metonymy</b> association: “the Crown”</span>
+            <span><b>Onomatopoeia</b> sound imitation: “buzz”</span>
+            <span><b>Apostrophe</b> direct address: “O Death!”</span>
+            <span><b>Parallelism</b> repeated syntax</span>
+            <span><b>Antithesis</b> contrast in parallel units</span>
+            <span><b>Chiasmus</b> reversed order: ABBA</span>
+            <span><b>Personification</b> human quality given to non-human</span>
+            <span><b>Metaphor</b> one thing described as another</span>
+          </div>
+        </section>
+
+        <section class="sheet-section">
+          <h2>5 · Drama essentials</h2>
+          <div class="device-grid">
+            <span><b>Soliloquy</b> extended speech revealing private thoughts</span>
+            <span><b>Aside</b> brief words unheard by other characters</span>
+            <span><b>Stage directions</b> performance instructions, not dialogue</span>
+            <span><b>Dramatic irony</b> audience knows more than a character</span>
+            <span><b>Tragedy</b> serious conflict ending in catastrophe</span>
+            <span><b>Comedy</b> conflict typically ends in reconciliation</span>
+          </div>
+        </section>
+
+        <section class="sheet-section correction-box">
+          <h2>6 · Course-specific corrections</h2>
+          <ul>
+            <li>Trochaic tetrameter with 7 or 8 syllables and stress on uneven syllables: <b>True</b> in the Moodle course definition.</li>
+            <li><i>Oliver Twist</i>: <b>heterodiegetic · dialogue · implicit · narrative comments</b>.</li>
+            <li>Hemingway: <b>setting · homodiegetic/first-person narrator · character · theme</b>.</li>
+            <li>Prose is language without regular organization into metrical verse lines; it can occur inside drama.</li>
+            <li>A comma at the end of a line does not automatically make it end-stopped; syntax is decisive.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <span>Built from the official course schedule, glossary and Moodle feedback.</span>
+      <span>Progress stays on this device.</span>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
