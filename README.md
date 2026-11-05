@@ -4,9 +4,9 @@ English-only, iPad-friendly trainer for the **Introduction to Literary Studies**
 
 ## Open online
 
-**GitHub Pages:** <https://sirmrba.github.io/literary-sprint-sidelya/>
+**GitHub Pages:** <https://sirmrba.github.io/literary-sprint/>
 
-The source is available in the public repository <https://github.com/SirMrBA/literary-sprint-sidelya>. The published GitHub Pages website itself is public.
+The source is available in the public repository <https://github.com/SirMrBA/literary-sprint>. The published GitHub Pages website itself is public.
 
 ## Contents
 
@@ -20,7 +20,7 @@ The source is available in the public repository <https://github.com/SirMrBA/lit
 
 ## Start on the Mac
 
-Double-click **Start Trainer.command**. Keep the Terminal window open while Sidelya is studying.
+Double-click **Start Trainer.command**. Keep the Terminal window open while you are studying.
 
 The script prints the current Wi-Fi address, starts the trainer on port 8765 and opens it on the Mac. The iPad must be connected to the same Wi-Fi network.
 
