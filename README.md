@@ -6,7 +6,7 @@ English-only, iPad-friendly trainer for the **Introduction to Literary Studies**
 
 **GitHub Pages:** <https://sirmrba.github.io/literary-sprint-sidelya/>
 
-The source is stored in the private repository <https://github.com/SirMrBA/literary-sprint-sidelya>. The published GitHub Pages website itself is public.
+The source is available in the public repository <https://github.com/SirMrBA/literary-sprint-sidelya>. The published GitHub Pages website itself is public.
 
 ## Contents
 
